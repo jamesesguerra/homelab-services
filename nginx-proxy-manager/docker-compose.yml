@@ -1,0 +1,24 @@
+services:
+  proxy_manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: always
+    networks:
+      - homelab
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    environment:
+      DB_POSTGRES_HOST: 'db'
+      DB_POSTGRES_PORT: '5432'
+      DB_POSTGRES_USER: 'james'
+      DB_POSTGRES_PASSWORD: 'james123'
+      DB_POSTGRES_NAME: 'npm_db'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+networks:
+  homelab:
+    name: homelab
+    external: true

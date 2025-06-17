@@ -1,0 +1,66 @@
+- name: Dashboard
+  hide-desktop-navigation: false
+  center-vertically: true
+  columns:
+    - size: small
+      widgets:
+        - type: to-do
+
+        - type: server-stats
+          servers:
+            - type: local
+              name: Services
+
+        - type: bookmarks
+          groups:
+            - links:
+                - title: Docker Hub
+                  url: https://hub.docker.com/repositories/jamesesguerra025
+                - title: Forgejo Documentation
+                  url: https://forgejo.org/docs/latest/
+                - title: Gmail
+                  url: https://gmail.com/
+                - title: Cloudflare
+                  url: https://www.cloudflare.com/
+            - title: Entertainment
+              color: 10 70 50
+              links:
+                - title: Netflix
+                  url: https://www.netflix.com/
+                - title: Disney+
+                  url: https://www.disneyplus.com/
+                - title: YouTube
+                  url: https://www.youtube.com/
+                - title: Prime Video
+                  url: https://www.primevideo.com/
+
+    - size: full
+      widgets:
+        - type: search
+          autofocus: true
+          search-engine: google
+          new-tab: true
+          bangs:
+            - title: YouTube
+              shortcut: "!yt"
+              url: https://www.youtube.com/results?search_query={QUERY}
+            - title: Github
+              shortcut: "!gh"
+              url: https://github.com/search?q={QUERY}&type=repositories
+
+        - type: monitor
+          cache: 1m
+          title: Services
+          sites:
+            - title: NGINX Proxy Manager
+              url: http://localhost:81
+              check-url: http://proxy_manager:81
+              icon: si:nginx
+            - title: Gitea
+              url: https://gitea.homelab
+              check-url: http://gitea:3000
+              icon: si:gitea
+            - title: WatchYourLAN
+              url: http://localhost:8840
+              check-url: http://localhost:8840
+              icon: si:wireshark

@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    secrets:
+      - psql_user
+      - psql_password
+    networks:
+      - homelab
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
+      POSTGRES_USER_FILE: /run/secrets/psql_user
+    ports:
+      - '5432:5432'
+    restart: always
+
+volumes:
+  psql-data:
+
+secrets:
+  psql_user:
+    file: ./psql_user.txt
+  psql_password:
+    file: ./psql_pass.txt
+
+networks:
+  homelab:
+    name: homelab
+    external: true

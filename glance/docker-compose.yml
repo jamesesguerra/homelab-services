@@ -1,0 +1,16 @@
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config
+      - ./assets:/app/assets
+    networks:
+      - homelab
+    env_file: .env
+
+networks:
+  homelab:
+    name: homelab
+    external: true

@@ -1,0 +1,11 @@
+services:
+  wyl:
+    image: aceberg/watchyourlan
+    container_name: wyl
+    environment:
+      - IFACES=wlp2s0
+      - TZ=Asia/Manila
+    network_mode: host
+    volumes:
+      - ./wyl:/data/WatchYourLAN
+    restart: always

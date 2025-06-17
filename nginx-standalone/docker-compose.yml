@@ -1,0 +1,12 @@
+services:
+  nginx-web:
+    image: nginx:latest
+    networks:
+      - homelab
+    ports:
+      - "85:80"
+
+networks:
+  homelab:
+    name: homelab
+    external: true
