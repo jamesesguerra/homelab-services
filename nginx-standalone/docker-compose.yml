@@ -1,12 +1,20 @@
 services:
-  nginx-web:
-    image: nginx:latest
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - homelab
     ports:
-      - "85:80"
+      - "80:80"
+    volumes:
+      - artifacts:/usr/share/nginx/html
+    restart: always
 
 networks:
   homelab:
     name: homelab
     external: true
+
+volumes:
+  artifacts:
